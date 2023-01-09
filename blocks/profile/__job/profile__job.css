@@ -1,0 +1,29 @@
+.profile__job {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  justify-self: start;
+  align-self: start;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21.78px;
+  overflow: hidden;
+}
+
+@media (max-width: 500px) {
+  .profile__job  {
+      justify-self: center;
+  }
+}
+
+@media (max-width: 425px) {
+  .profile__job  {
+    font-size: 14px;
+    min-height: 14px;
+    display: flex;
+    align-self: flex-start;
+    text-align: center;
+    margin: 14px auto 0;
+  }
+}

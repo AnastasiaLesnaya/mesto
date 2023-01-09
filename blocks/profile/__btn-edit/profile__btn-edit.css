@@ -1,0 +1,28 @@
+.profile__btn-edit {
+  width: 24px;
+  height: 24px;
+  align-self: end;
+  justify-self: left;
+  margin-bottom: 12px;
+  background: none;
+  background-image: url(../../../images/btn-edit.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 2px;
+  border: 1px solid white;
+}
+
+@media (max-width: 768px) {
+  .profile__btn-edit  {
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 425px) {
+  .profile__btn-edit  {
+    width: 18px;
+    height: 18px;
+    margin-left: 10px;
+    justify-self: start;
+  }
+}
