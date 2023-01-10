@@ -8,22 +8,27 @@
   font-weight: normal;
   font-size: 18px;
   line-height: 21.78px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   overflow: hidden;
 }
 
-@media (max-width: 500px) {
+
+@media (max-width: 768px) {
   .profile__job  {
-      justify-self: center;
+    display: flex;
+    justify-self: center;
+    font-size: 14px;
+    line-height: 16.94px;
+    display: flex;
+    align-self: center;
+    text-align: center;
+    margin: 14px auto 0;
   }
 }
 
 @media (max-width: 425px) {
-  .profile__job  {
-    font-size: 14px;
-    min-height: 14px;
-    display: flex;
-    align-self: flex-start;
-    text-align: center;
-    margin: 14px auto 0;
+  .profile__info {
+    justify-content: space-between;
   }
 }

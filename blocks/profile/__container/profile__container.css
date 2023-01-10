@@ -1,11 +1,10 @@
 .profile__container {
   width: 336px;
-  min-height: 73px;
   align-self: center;
 
 }
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
   .profile__container {
     max-width: 282px;
     text-align: center;

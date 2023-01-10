@@ -5,10 +5,17 @@
   justify-content: space-between;
 }
 
-@media (max-width: 425px) {
+
+@media (max-width: 768px) {
   .profile__info {
     max-width: 282px;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 0 auto;
+  }
+}
+
+@media (max-width: 425px) {
+  .profile__info {
+    justify-content: space-between;
   }
 }

@@ -5,7 +5,7 @@
 @media (max-width: 425px) {
   .popup_opened {
     margin: 0 auto;
-    justify-items: center;
-    align-items: center;
+    justify-self: center;
+    left: 19px;
   }
 }

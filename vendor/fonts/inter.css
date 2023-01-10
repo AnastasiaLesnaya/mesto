@@ -17,6 +17,15 @@
        url("Inter-Black.woff?v=3.19") format("woff");
 }
 
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("Inter-Medium.woff2") format("woff2"),
+       url("Inter-Medium.woff") format("woff");
+}
+
 /* -------------------------------------------------------
 Variable font.
 Usage:

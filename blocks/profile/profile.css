@@ -7,9 +7,13 @@
   grid-template-columns: 168px max-content 1fr max-content;
 }
 
-@media (max-width: 425px) {
+
+
+@media (max-width: 768px) {
   .profile  {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   }
 }

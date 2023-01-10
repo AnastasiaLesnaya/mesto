@@ -8,6 +8,9 @@
   line-height: 48px;
   justify-self: start;
   align-self: end;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 
@@ -21,7 +24,6 @@
 @media (max-width: 425px) {
   .profile__name  {
     max-width: 189px;
-    min-height: 26px;
     font-size: 27px;
     line-height: 32.68px;
     justify-self: end;

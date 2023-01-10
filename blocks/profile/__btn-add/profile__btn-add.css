@@ -9,11 +9,11 @@
   justify-self: end;
   align-self: center;
   width: 150px;
-  height: 50px;
+  min-height: 50px;
 }
 
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
   .profile__btn-add  {
     width: 282px;
     margin-top: 40px;
