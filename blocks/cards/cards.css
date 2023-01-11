@@ -10,14 +10,9 @@
   list-style: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .cards  {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 425px) {
-  .cards  {
+    margin: 36px auto 0;
     max-width: 282px;
     grid-template-columns: 1fr;
   }

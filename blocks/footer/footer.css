@@ -6,6 +6,7 @@
 
 @media screen and (max-width: 900px) {
   .footer {
+    margin: 0;
     padding: 60px 19px;
   }
 }
@@ -13,5 +14,6 @@
 @media screen and (max-width: 425px) {
   .footer {
     padding-top: 48px;
+    padding-bottom: 36px;
   }
 }

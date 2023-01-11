@@ -1,6 +1,6 @@
 .profile__job {
   max-width: 100%;
-  margin: 0;
+  margin: 14px 0 0 0;
   padding: 0;
   justify-self: start;
   align-self: start;
@@ -14,7 +14,7 @@
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .profile__job  {
     display: flex;
     justify-self: center;
@@ -22,7 +22,7 @@
     line-height: 16.94px;
     align-self: center;
     text-align: center;
-    margin: 14px auto 0;
+    margin: 12px auto 0;
   }
 }
 

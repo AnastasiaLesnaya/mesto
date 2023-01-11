@@ -4,12 +4,12 @@
   margin: 40px auto 0;
   display: grid;
   align-self: center;
-  grid-template-columns: 168px max-content 1fr max-content;
+  grid-template-columns: 145px max-content 1fr max-content;
 }
 
 
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .profile  {
   display: flex;
   flex-direction: column;

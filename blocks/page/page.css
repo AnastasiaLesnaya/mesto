@@ -13,11 +13,3 @@
   -ms-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
 }
-
-
-@media (max-width: 425px) {
-  .page {
-    width: 100vw;
-    max-width: 100%;
-  }
-}

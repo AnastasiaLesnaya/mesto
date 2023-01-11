@@ -2,9 +2,11 @@
   width: 336px;
   align-self: center;
 
+  display: flex;
+  flex-direction: column;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .profile__container {
     max-width: 282px;
     text-align: center;

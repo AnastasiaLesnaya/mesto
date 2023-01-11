@@ -1,4 +1,5 @@
 .profile__name{
+  display: flex;
   max-width: 294px;
   margin: 0;
   padding: 0;
@@ -7,14 +8,14 @@
   font-size: 42px;
   line-height: 48px;
   justify-self: start;
-  align-self: end;
+  align-self: flex-start;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .profile__name  {
     font-size: 32px;
   }

@@ -9,10 +9,3 @@
   align-items: center;
   justify-content: center;
 }
-
-@media (max-width: 425px) {
-  .popup {
-    max-width: 282px;
-    left: 19px;
-  }
-}

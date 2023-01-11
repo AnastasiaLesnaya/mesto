@@ -6,3 +6,10 @@
   color: black;
   font-family: 'Inter', ‘Arial’, sans-serif;
 }
+
+@media (max-width: 768px) {
+  .popup__title {
+    font-size: 18px;
+    line-height: 21.78px;
+  }
+}
