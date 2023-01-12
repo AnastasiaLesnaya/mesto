@@ -1,12 +1,12 @@
 .cards__btn-like {
-  margin-left: 20px;
+  margin-left: 37px;
   align-self: stretch;
   background-image: url(../../../images/btn-like.svg);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
   grid-column: 2/3;
-  width: 19px;
+  width: 22px;
   border: none;
   background-color: white;
 }

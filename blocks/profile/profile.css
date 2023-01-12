@@ -1,16 +1,18 @@
 .profile {
   max-width: 880px;
   min-height: 120px;
-  margin: 40px auto 0;
+  margin: 38px auto 0;
+  padding: 0;
   display: grid;
   align-self: center;
-  grid-template-columns: 145px max-content 1fr max-content;
+  grid-template-columns: 148px max-content 1fr max-content;
 }
 
 
 
 @media (max-width: 900px) {
   .profile  {
+  margin-top: 41px;
   display: flex;
   flex-direction: column;
   justify-content: center;

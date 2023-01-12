@@ -20,5 +20,6 @@
 @media (max-width: 425px) {
   .profile__info {
     justify-content: space-between;
+    padding-left: 25px;
   }
 }
