@@ -12,7 +12,7 @@
 
 @media (max-width: 900px) {
   .cards  {
-    margin: 38px auto 0;
+    margin: 36px auto 0;
     max-width: 282px;
     grid-template-columns: 1fr;
   }
