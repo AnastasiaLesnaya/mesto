@@ -26,64 +26,52 @@
             <button type="button" class="button profile__btn-add" aria-label="add"></button>
         </section>
         <section>
-          <ul class="cards">
-           
-        </ul>
+          <ul class="cards">    
+          </ul>
         </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">&copy;&nbsp;2023 Mesto Russia</p>
       </footer>
-
-<!-- Card Template -->
-<template id="cards-item">
-  <li>
-    <article class="cards-item">
-      <button class="button cards-item__btn-delete" type="button" aria-label="delete"></button>
-      <img class="cards__image button cards-item__btn-zoom" alt="Изображение" src="<%=require('./images/avatars/profile__avatar.jpg')%>" >
-      <div class="photo-card__footer">
-        <p class="photo-card__title"></p>
-        <div class="photo-card__like-container">
-          <button class="cards-item__btn-like button" type="button" aria-label="like"></button>
-          <p class="cards-item__like-counter"></p>
-        </div>
-      </div>
-    </article>
-  </li>
-</template>
-
-      
-    </div>
+<!-- Темплэйт карточки места -->
+    <template id="cards__item_template">
+      <li class="cards__item">
+        <button class="button cards__btn-delete" type="button" aria-label="delete"></button>
+        <img class="cards__image button cards__btn-zoom" alt="Изображение" src="">
+        <h2 class="cards__title"></h2>
+        <button class="cards__btn-like button" type="button" aria-label="like"></button>
+      </li>
+    </template>
+<!-- Попап, редактирование профиля -->
     <div class="popup popup_edit">
       <div class="popup__container">
-          <button class="button popup__close" type="button" aria-label="close"></button>
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <form name="profileEdit" class="popup__form">
-              <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Введите имя" required>
-              <input type="text" name="job" class="popup__input popup__input_type_job" placeholder="О себе" required>
-              <button type="submit" class="button popup__submit">Сохранить</button>
-          </form>
+        <button class="button popup__close" type="button" aria-label="close"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form name="profileEdit" class="popup__form">
+          <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Введите имя" required>
+          <input type="text" name="job" class="popup__input popup__input_type_job" placeholder="О себе" required>
+          <button type="submit" class="button popup__submit">Сохранить</button>
+        </form>
       </div>
     </div>
+ <!--Попап, добавление места-->
     <div class="popup popup_add">
       <div class="popup__container">
-          <button class="button popup__close" type="button" aria-label="close"></button>
-          <h2 class="popup__title">Новое место</h2>
-          <form name="newPlace" class="popup__form">
-              <input type="text" name="place" class="popup__input popup__input_type_place" placeholder="Название" required>
-              <input type="text" name="picture" class="popup__input popup__input_type_picture" placeholder="Ссылка на картинку" required>
-              <button type="submit" class="button popup__submit">Сохранить</button>
-          </form>
+        <button class="button popup__close" type="button" aria-label="close"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form name="newPlace" class="popup__form">
+          <input type="text" name="place" class="popup__input popup__input_type_place" placeholder="Название" required>
+          <input type="text" name="picture" class="popup__input popup__input_type_picture" placeholder="Ссылка на картинку" required>
+          <button type="submit" class="button popup__submit">Сохранить</button>
+        </form>
       </div>
     </div>
-
+  <!--Попап, увеличение картинки-->
     <div class="popup popup_zoom">
       <div class="popup__container popup__container_zoom">
-          <button class="button popup__close" type="button" aria-label="close"></button>
-          <figure class="popup__figure">
-            <img class="popup__image" src="<%=require('./images/avatars/profile__avatar.jpg')%>" alt="Описание">
-            <figcaption class="popup__caption"></figcaption>
-          </figure>
+        <button class="button popup__close" type="button" aria-label="close"></button>
+        <img class="popup__image">
+        <h2 class="popup__title popup__title_zoom"></h2>
       </div>
     </div> 
     <script src="./scripts/index.js"></script>
