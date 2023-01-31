@@ -1,25 +1,25 @@
 // edit profile
-let profileEditForm = document.forms['profileEdit'];
-let profileName = document.querySelector('.profile__name');
-let profileJob = document.querySelector('.profile__job');
-let profileNameInput = document.querySelector('.popup__input_type_name');
-let profileJobInput = document.querySelector('.popup__input_type_job');
+const profileEditForm = document.forms['profileEdit'];
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__job');
+const profileNameInput = document.querySelector('.popup__input_type_name');
+const profileJobInput = document.querySelector('.popup__input_type_job');
 
 // edit profile form
-function formSubmitHandler (evt) {
+function submitEditForm (evt) {
   evt.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileJob.textContent = profileJobInput.value;
   closePopup(popupEdit);
 };
 
-profileEditForm.addEventListener('submit', formSubmitHandler);
+profileEditForm.addEventListener('submit', submitEditForm);
 
 
 // popups
-let popupEdit = document.querySelector('.popup_edit');
-let popupAdd = document.querySelector('.popup_add');
-let popupZoom = document.querySelector('.popup_zoom');
+const popupEdit = document.querySelector('.popup_edit');
+const popupAdd = document.querySelector('.popup_add');
+const popupZoom = document.querySelector('.popup_zoom');
 
 // zoom popup
 const popupZoomImage = popupZoom.querySelector('.popup__image');
@@ -28,16 +28,15 @@ const popupZoomTitle = popupZoom.querySelector('.popup__title_zoom');
 
 
 // popups open buttons
-let popupEditOpen = document.querySelector('.profile__btn-edit');
-let popupAddOpen = document.querySelector('.profile__btn-add');
-let popupZoomOpen = document.querySelector('.popup__image');
+const popupEditOpen = document.querySelector('.profile__btn-edit');
+const popupAddOpen = document.querySelector('.profile__btn-add');
 
-
-// popups close buttons
-let popupEditClose = popupEdit.querySelector('.popup__close');
-let popupAddClose = popupAdd.querySelector('.popup__close');
-let popupZoomClose = popupZoom.querySelector('.popup__close');
-
+// close popups
+const closeButtons = document.querySelectorAll('.popup__close');
+closeButtons.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+});
 
 // function open popup
 function openPopup (popup) {
@@ -58,23 +57,6 @@ popupEditOpen.addEventListener('click', function () {
 
 popupAddOpen.addEventListener('click', function () {
   openPopup(popupAdd);
-});
-
-popupZoomOpen.addEventListener('click', function () {
- openPopup(popupZoom);
-});
-
-  // close popups
-popupEditClose.addEventListener('click', function () {
-  closePopup(popupEdit);
-});
-
-popupAddClose.addEventListener('click', function () {
-  closePopup(popupAdd);
-});
-
-popupZoomClose.addEventListener('click', function () {
-  closePopup(popupZoom);
 });
 
   // new place popup
@@ -124,15 +106,15 @@ newPlaceTitle.textContent = card.name;
 
 const newPlaceLink = place.querySelector('.cards__image');
 newPlaceLink.src = card.link;
+newPlaceLink.alt = card.name;
 
 // zoom popup
 newPlaceLink.addEventListener('click', function () {
   popupZoomImage.src = newPlaceLink.src;
+  popupZoomImage.alt = newPlaceTitle.textContent;
   popupZoomTitle.textContent = newPlaceTitle.textContent;
   openPopup(popupZoom);
 });
-
-console.log (newPlaceLink);
 
 //like place
 const likeBtn = place.querySelector('.cards__btn-like');
@@ -164,8 +146,7 @@ const addNewPlace = function (evt) {
     name: newPlaceTitleInput.value,
     link: newPlaceLinkInput.value
   }
-  newPlaceTitleInput.value = "";
-  newPlaceLinkInput.value = "";
+  evt.target.reset();
   closePopup(popupAdd);
   renderCard(place);
 };
