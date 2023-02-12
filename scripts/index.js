@@ -38,15 +38,38 @@ closeButtons.forEach((button) => {
   button.addEventListener('click', () => closePopup(popup));
 });
 
+
 // function open popup
 function openPopup (popup) {
 popup.classList.add('popup_opened');
+document.addEventListener('keydown', closePopupByEsc);
 }
 
 // function close popup
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByEsc);
   }
+
+// close by ESC
+
+function closePopupByEsc (evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened')
+    closePopup(openedPopup);
+  }
+}
+
+// close by overlay
+const popupElements = document.querySelectorAll('.popup');
+
+popupElements.forEach((popupElement) => {
+  popupElement.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popupElement);
+    }
+  });
+});
 
 // open popups
 popupEditOpen.addEventListener('click', function () {
