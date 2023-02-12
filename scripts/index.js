@@ -32,10 +32,17 @@ const popupEditOpen = document.querySelector('.profile__btn-edit');
 const popupAddOpen = document.querySelector('.profile__btn-add');
 
 // close popups
-const closeButtons = document.querySelectorAll('.popup__close');
-closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
+const popups = document.querySelectorAll('.popup');
+
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__close')) {
+          closePopup(popup)
+        }
+    });
 });
 
 
@@ -60,17 +67,6 @@ function closePopupByEsc (evt) {
   }
 }
 
-// close by overlay
-const popupElements = document.querySelectorAll('.popup');
-
-popupElements.forEach((popupElement) => {
-  popupElement.addEventListener('mousedown', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popupElement);
-    }
-  });
-});
-
 // open popups
 popupEditOpen.addEventListener('click', function () {
   openPopup(popupEdit);
@@ -78,7 +74,11 @@ popupEditOpen.addEventListener('click', function () {
   profileJobInput.value = profileJob.textContent.trim();
 });
 
+ const buttonSubmitNewPlace = document.querySelector('#popup__submit-place');
+
 popupAddOpen.addEventListener('click', function () {
+  buttonSubmitNewPlace.classList.add('popup__submit_disabled');
+  buttonSubmitNewPlace.disabled = true;
   openPopup(popupAdd);
 });
 
@@ -170,8 +170,8 @@ const addNewPlace = function (evt) {
     link: newPlaceLinkInput.value
   }
   evt.target.reset();
-  closePopup(popupAdd);
   renderCard(place);
+  closePopup(popupAdd);
 };
 
 newPlaceForm.addEventListener('submit', addNewPlace);
