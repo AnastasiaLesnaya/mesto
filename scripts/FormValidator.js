@@ -57,7 +57,7 @@ class FormValidator {
   }
 
   // публичный метод, включающий валидацию
-  enableValidationCheck() {
+  enableValidation() {
     this._setEventListeners();
   }
 

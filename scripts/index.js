@@ -118,9 +118,9 @@ const submitEditForm = function (evt) {
 
 // запускаем валидацию форм
 const editProfileValidate = new FormValidator(classListForm, popupEdit);
-editProfileValidate.enableValidationCheck();
+editProfileValidate.enableValidation();
 const addCardValidate = new FormValidator(classListForm, popupAdd);
-addCardValidate.enableValidationCheck();
+addCardValidate.enableValidation();
 
 // открытие попапа редактирования
 popupEditOpen.addEventListener('click', () => openPopup(popupEdit));
