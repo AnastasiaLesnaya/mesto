@@ -1,5 +1,8 @@
 .popup__form {
-  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  line-height: 17px;
 }
 
 @media (max-width: 768px) {

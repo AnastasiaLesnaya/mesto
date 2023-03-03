@@ -1,6 +1,6 @@
 .popup__title {
   margin: 0;
-  padding: 0;
+  padding-bottom: 50px;
   font-size: 24px;
   line-height: 1.05;
   color: black;
@@ -12,5 +12,6 @@
     max-width: 240px;
     font-size: 18px;
     line-height: 21.78px;
+    padding-bottom: 75px;
   }
 }

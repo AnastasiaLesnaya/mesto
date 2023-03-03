@@ -22,7 +22,8 @@ class FormValidator {
     const errorElement =
     this._elementValidation.querySelector(`.${inputElement.id}-error`)
     // скрываем и очищвем текст ошибок
-    errorElement.classList.remove(this._objectList.errorClass);
+    inputElement.classList.remove(this._objectList.inputErrorClass);
+    errorElement.classList.remove(this._objectList.ErrorClass);
     errorElement.textContent = '';
   }
 
@@ -61,17 +62,33 @@ class FormValidator {
     this._setEventListeners();
   }
 
+  
+  disableSubmitButton() {
+    this._submitButton.setAttribute('disabled', 'true');
+    this._submitButton.classList.add(this._objectList.inactiveButtonClass);
+  }
+
+  _enableSubmitButton() {
+    this._submitButton.classList.remove(this._objectList.inactiveButtonClass);
+    this._submitButton.removeAttribute('disabled');
+  }
+
   // вкл/выкл кнопки сохранения
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
       // выкл при ошибке
-      this._submitButton.setAttribute('disabled', 'true');
-      this._submitButton.classList.add(this._objectList.inactiveButtonClass);
+      this.disableSubmitButton();
     } else {
       // вкл
-      this._submitButton.classList.remove(this._objectList.inactiveButtonClass);
-      this._submitButton.removeAttribute('disabled');
+      this._enableSubmitButton();
     }
+  }
+
+  resetValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement)
+    });
   }
 }
 

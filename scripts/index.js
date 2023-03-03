@@ -86,15 +86,14 @@ const renderCard = function (object, template) {
 
 // функция добавления новых карточек
 const addNewCard = function (evt) {
-  evt.preventDefault;
+  evt.preventDefault();
   cardsArea.prepend(renderCard({
     name: newPlaceTitleInput.value,
     link: newPlaceLinkInput.value
   }, '#cards__item_template'));
   evt.target.reset();
   closePopup(popupAdd);
-  popupSubmitButton.setAttribute('disabled', 'true');
-  popupSubmitButton.classList.add(classListForm.inactiveButtonClass);
+  addCardValidate.disableSubmitButton();
   }
 
 // функция отрисовки начальных карточек
@@ -123,10 +122,18 @@ const addCardValidate = new FormValidator(classListForm, popupAdd);
 addCardValidate.enableValidation();
 
 // открытие попапа редактирования
-popupEditOpen.addEventListener('click', () => openPopup(popupEdit));
+popupEditOpen.addEventListener('click', () => {
+  editProfileValidate.resetValidation();
+  openPopup(popupEdit);
+});
 
 // открытие попапа добавления места
-popupAddOpen.addEventListener('click', () => openPopup(popupAdd));
+popupAddOpen.addEventListener('click',() => {
+  newPlaceTitleInput.value = "";
+  newPlaceLinkInput.value = "";
+  addCardValidate.resetValidation();
+  openPopup(popupAdd);
+});
 
 
 // закрытие попапов

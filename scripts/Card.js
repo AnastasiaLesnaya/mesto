@@ -62,6 +62,12 @@ _addEventHandler = () => {
   this._deleteIcon.addEventListener('click', evt => this._deleteCard(evt));
   this._elementImages.addEventListener('click', () => this._zoomCards())
   }
+
+_setEventListeners = () => {
+  this._popupImage.addEventListener('click', () => {
+    this._handleCardClick(this._name, this._link)
+  });
+}
 }
 
 // экспортируем класс
