@@ -56,6 +56,7 @@ const newPlaceLinkInput = document.querySelector('.popup__input_type_picture');
 const popups = document.querySelectorAll('.popup');
 const popupSubmitButton = popupAdd.querySelector('.popup__submit');
 
+// для валидации
 const classListForm = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
