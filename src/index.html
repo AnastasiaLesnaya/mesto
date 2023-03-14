@@ -3,18 +3,17 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Место</title>
   </head>
   <body class="page">
     <div>
       <header class="header">
-       <img src="images/header-logo.svg" alt="логотип Место.Россия" class="header__logo">
+       <img src="<%=require('./images/header-logo.svg')%>" alt="логотип Место.Россия" class="header__logo">
       </header>
       <main class="content">
         <section class="profile">
           <img class="profile__image"
-          src="./images/profile-avatar.png"
+          src="<%=require('./images/profile-avatar.png')%>"
           alt="аватар профиля">
           <div class="profile__container">
             <div class="profile__info">
@@ -85,8 +84,7 @@
         <img class="popup__image">
         <h2 class="popup__title popup__title_zoom"></h2>
       </div>
-    </div> 
-    <script type="module" src="./scripts/index.js"></script>
+    </div>
     </div>
   </body>
 </html>

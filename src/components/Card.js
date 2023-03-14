@@ -1,12 +1,10 @@
-// импортируем переменные 
-import { openPopup, popupZoom, popupZoomImage as popupImage, popupZoomTitle as popupTitle } from './index.js';
-
 // создаём класс карточки (объект, шаблон)
 class Card {
-  constructor(object, templateEl) {
+  constructor(object, templateEl, handleCardClick) {
     this._name = object.name;
     this._image = object.link;
     this._template = templateEl;
+    this._handleCardClick = handleCardClick;
 
     this._elementCard = document
     .querySelector(this._template)
@@ -24,14 +22,6 @@ class Card {
 
     this._deleteIcon = this._elementCard
     .querySelector('.cards__btn-delete');
-}
-
-// метод зума карточки
-_zoomCards() {
-  popupTitle.textContent = this._name;
-  popupImage.src = this._image;
-  popupImage.alt = this._name;
-  openPopup(popupZoom);
 }
 
 // метод лайка карточки
@@ -60,14 +50,8 @@ return this._elementCard;
 _addEventHandler = () => {
   this._likeIcon.addEventListener('click', evt => this._likeCard(evt))
   this._deleteIcon.addEventListener('click', evt => this._deleteCard(evt));
-  this._elementImages.addEventListener('click', () => this._zoomCards())
+  this._elementImages.addEventListener('click', () => this._handleCardClick(this._name, this._image));
   }
-
-_setEventListeners = () => {
-  this._popupImage.addEventListener('click', () => {
-    this._handleCardClick(this._name, this._link)
-  });
-}
 }
 
 // экспортируем класс
