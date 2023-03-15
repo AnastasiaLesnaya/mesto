@@ -8,10 +8,10 @@ class PopupWithImage extends Popup {
   }
 
 // открываем попап зум с необходимыми данными
-  open(zoomTitle, zoomImage) {
-    this._popupZoomTitle.textContent = zoomTitle;
-    this.__popupZoomImage.alt = zoomTitle;
-    this.__popupZoomImage.src = zoomImage;
+  open(place, picture) {
+    this._popupZoomTitle.textContent = place;
+    this._popupZoomImage.src = picture;
+    this._popupZoomImage.alt = place;
     super.open();
   }
 }

@@ -13,7 +13,6 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import {
   popupEditOpen, popupAddOpen, popupAdd,
   profileEditForm, profileNameInput, profileJobInput,
-  newPlaceTitleInput, newPlaceLinkInput,
 } from '../components/utils/constants.js';
 
 // попап зум
@@ -30,7 +29,7 @@ const userInfo = new UserInfo({
 const popupEdit = new PopupWithForm('.popup_edit', {
   callbackFormSubmit: (profileData) => {
     userInfo.setUserInfo({
-      username: profileData.username,
+      name: profileData.name,
       job: profileData.job
     });
     popupEdit.close();
@@ -42,15 +41,6 @@ popupEdit.setEventListeners();
 const handleCardClick = function (title, image) {
   popupZoom.open(title, image);
 }
-// отрисовка начальных карточек
-const renderInitialCards = new Section({
-  items: objectListCard,
-  renderer: (cardData) => {
-    const card = new Card(cardData, '#cards__item_template', handleCardClick);
-    renderInitialCards.addItem(card.generateCard());
-  }
-}, '.cards');
-renderInitialCards.renderItems();
 
 // функция добавления новой карточки
 const renderCard = function (cardData) {
@@ -58,17 +48,27 @@ const renderCard = function (cardData) {
   return renderCardItem.generateCard();
 }
 
+// отрисовка начальных карточек
+const renderInitialCards = new Section({
+  items: objectListCard,
+  renderer: (cardData) => {
+    renderInitialCards.addItem(renderCard(cardData));
+  }
+}, '.cards');
+renderInitialCards.renderItems();
+
+
 // попап добавления новой карточки
-const popupAdd = new PopupWithForm('.popup_add', {
-  callbackFormSubmit: () => {
+const popupAddCard = new PopupWithForm('.popup_add', {
+  callbackFormSubmit: (formValues) => {
     renderInitialCards.addItem(renderCard({
-      name: newPlaceTitleInput.value,
-      link: newPlaceLinkInput.value
-    }, '#cards__item_template', handleCardClick));
-    popupAdd.close();
+      name: formValues.place,
+      link: formValues.picture
+    }));
+    popupAddCard.close();
   }
 });
-popupAdd.setEventListeners();
+popupAddCard.setEventListeners();
 
 // запускаем валидацию форм
 const editProfileValidate = new FormValidator(classListForm, profileEditForm);
@@ -79,12 +79,13 @@ addCardValidate.enableValidation();
 // открытие попапа редактирования
 popupEditOpen.addEventListener('click', function() {
   popupEdit.open();
-  profileNameInput.setAttribute('value', userInfo.getUserInfo().username);
-  profileJobInput.setAttribute('value', userInfo.getUserInfo().job);
+  const currentUserInfo = userInfo.getUserInfo();
+  profileNameInput.setAttribute('value', currentUserInfo.name);
+  profileJobInput.setAttribute('value', currentUserInfo.job);
 });
 
 // открытие попапа добавления места
 popupAddOpen.addEventListener('click', function() {
-  popupAdd.open();
+  popupAddCard.open();
   addCardValidate.disableSubmitButton();
 });

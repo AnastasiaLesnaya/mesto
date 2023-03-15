@@ -9,15 +9,15 @@ class UserInfo {
   // нужно будет подставить в форму при открытии
   getUserInfo() {
     return {
-      username: this._username.textContent,
+      name: this._username.textContent,
       job: this._userJob.textContent
     };
   }
 
   // метод принимает новые данные пользователя 
   // и добавляет их на страницу
-  setUserInfo({ username, job }) {
-    this._username.textContent = username;
+  setUserInfo({ name, job }) {
+    this._username.textContent = name;
     this._userJob.textContent = job;
   }
 }
