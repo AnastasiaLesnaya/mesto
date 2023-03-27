@@ -1,14 +1,15 @@
 .cards__btn-like {
-  margin-left: 37px;
-  align-self: stretch;
+  margin: 0 0 5px 0;
+  padding: 0;
   background-image: url(../../../images/btn-like.svg);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  grid-column: 2/3;
-  width: 22px;
+  min-width: 22px;
+  min-height: 19px;
   border: none;
-  background-color: white;
+  background-color: transparent;
+  transition: all .5s ease-in-out;
 }
 
 .cards__btn-like:focus {

@@ -1,13 +1,13 @@
 class Section {
-  constructor({ items, renderer }, templateSelector) {
-    this._initialItems = items;
+  constructor({ renderer }, templateSelector) {
     this._renderer = renderer;
-    this._templateContainer = document.querySelector(templateSelector);
+    this._templateContainer = document
+    .querySelector(templateSelector);
   }
 
 // метод отрисовки карточек
   renderItems() {
-    this._initialItems.forEach(this._renderer);
+    res.forEach(this._renderer);
     }
 
 // метод добавляет DOM-элемент в разметку

@@ -2,6 +2,7 @@ class UserInfo {
   constructor({ usernameSelector, userJobSelector }) {
     this._username = document.querySelector(usernameSelector);
     this._userJob = document.querySelector(userJobSelector);
+    this._avatarLink = document.querySelector('.profile__avatar');
   }
 
   // метод возвращения объекта с данными пользователя
@@ -20,6 +21,10 @@ class UserInfo {
     this._username.textContent = name;
     this._userJob.textContent = job;
   }
+// метод изменения аватара пользователя
+setUserAvatar(avatarLink) {
+  this._avatarLink.src = avatarLink;
+}
 }
 
 export { UserInfo };
