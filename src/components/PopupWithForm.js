@@ -7,6 +7,8 @@ class PopupWithForm extends Popup {
   
     this._popupFormItem = this._popupItem.querySelector('.popup__form');
     this._inputList = Array.from(this._popupFormItem.querySelectorAll('.popup__input'));
+    this._sendButton = this._popupItem.querySelector('.popup__submit');
+    this._sendButtonText = this._sendButton.textContent;
   }
 
   // приватный метод, собирает данные всех полей формы
@@ -27,6 +29,15 @@ class PopupWithForm extends Popup {
       this._callbackFormSubmit(this._getInputValues());
     });
   }
+
+    // метод добавления кнопке текста
+    putSavingProcessText() {
+      this._sendButton.textContent = 'Сохранение...';
+    }
+    // метод возвращения кнопки в привычный вид
+    returnSavingProcessText() {
+      this._sendButton.textContent = this._sendButtonText;
+    }
 
   // метод закрытия попапа
   close() {

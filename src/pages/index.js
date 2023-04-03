@@ -1,16 +1,16 @@
 // импорт стилей
 import './index.css';
 // импорт начальных карточек
-import { classListForm } from '../components/utils/objectList.js';
+//import { classListForm } from '../components/utils/objectList.js';
 // импорт классов
 import { Card } from '../components/Card.js';
-import { apiFindings } from '../components/utils/apiFindings.js';
+//import { apiFindings } from '../components/utils/apiFindings.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Section } from '../components/Section.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
-import { popupNotice } from '../components/popupNotice.js';
+import { PopupNotice } from '../components/PopupNotice.js';
 import { Api } from '../components/Api.js';
 // импорт переменных
 import {
@@ -19,8 +19,36 @@ import {
   popupAvatarEditForm, iconAvatarEdit
 } from '../components/utils/constants.js';
 
+const api = new Api({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-62/',
+  headers: {
+    'content-Type': 'application/json',
+    authorization: "7a41bbcd-7273-4261-a42b-1d34f24ccc05"
+  },
+});
+
+// данные пользователя
+const userInfo = new UserInfo({
+  usernameSelector: '.profile__name',
+  userJobSelector: '.profile__job',
+  userAvatarSelector: '.profile__avatar'
+});
+
+// отрисовка начальных карточек с помощью API
+const section = new Section({
+  renderer: (renderCard) }, '.cards');
+
+Promise.all([api.getUserInfo(), api.getAllCards()])
+ .then(([user, cards]) => {
+   userInfo.setUserInfo(user);
+   section.renderItems(cards.reverse());
+ })
+ .catch((err) => {
+   console.log(err);
+ });
+
 // Объявление экземпляра API
-const apiConnect = new Api(apiFindings);
+const apiConnect = new Api(api);
 // Переменная для хранения ID пользователя
 let userId;
 
@@ -28,48 +56,52 @@ let userId;
 const popupZoom = new PopupWithImage('.popup_zoom');
 popupZoom.setEventListeners();
 
-// данные пользователя
-const userInfo = new UserInfo({
-  usernameSelector: '.profile__name',
-  userJobSelector: '.profile__job'
-});
 
 // попап редактирования профиля
 const popupEdit = new PopupWithForm('.popup_edit', {
   callbackFormSubmit: (profileData) => {
     userInfo.setUserInfo({
       name: profileData.name,
-      job: profileData.job
+      about: profileData.about
     });
     popupEdit.close();
   }
 });
 popupEdit.setEventListeners();
 
-// функция попап зум
-const handleCardClick = function (title, image) {
-  popupZoom.open(title, image);
-}
 
 // функция добавления новой карточки
-const renderCard = function (cardData) {
-  const renderCardItem = new Card(cardData, '#cards__item_template', handleCardClick);
-  return renderCardItem.generateCard();
+const renderCard = function (cardObject) {
+  const CardItem = new Card(cardObject, '#cards__item_template', userId, 
+  { cardId: cardObject._id, authorId: cardObject.owner._id, }, {
+  // увеличение картинки
+   handleCardZoom: (place, picture) => { popupImageZoom.open(place, picture) },
+  // удаление карточки
+    handleCardDelete: (cardElement, cardId) => { popupNoticeDelete.open(cardElement, cardId) },
+    // Добавление лайка
+    handleCardLike: (cardId) => { apiConnect.putCardLike(cardId)
+      .then((res) => {
+        cardItem.renderCardLike(res);
+      })
+      .catch((err) => { console.log(`При лайке карточки возникла ошибка, ${err}`) })
+  },
+  // Удаление лайка
+  handleCardDeleteLike: (cardId) => { apiConnect.deleteCardLike(cardId)
+      .then((res) => {
+        cardItem.renderCardLike(res);
+        })
+        .catch((err) => { console.log(`При дизлайке карточки возникла ошибка, ${err}`) })
+    },
+  });
+  return cardItem.generateCard();
 }
-
-// отрисовка начальных карточек с помощью API
-const renderInitialCards = new Section({
-  renderer: (cardObject) => {
-    renderInitialCards.addItem(renderCard(cardObject));
-  }
-}, '.cards');
 
 // промис
 Promise.all([ apiConnect.getUserData(), apiConnect.getInitialCards() ]).then(([ userProfileData, cardObject ]) => {
   userId = userProfileData._id;
   userInfo.setUserInfo({ username: userProfileData.name, description: userProfileData.about })
-  renderInitialCards.renderItems(cardObject.reverse())
-  userInfo.setUserAvatar(userProfileData.avatar)
+  renderInitialCards.renderItems(cardObject.reverse());
+  userInfo.setUserAvatar(userProfileData.avatar);
 })
 .catch((err) => { console.log(`Возникла ошибка, ${err}`) })
 
@@ -81,19 +113,20 @@ const popupEditeAvatar = new PopupWithForm('#avatar-popup', {
 callbackFormSubmit: (userProfileData) => { popupEditeAvatar.putSavingProcessText(); apiConnect.sendAvatarData(userProfileData)
     .then((res) => {
       userInfo.setUserAvatar(res.avatar);
+      popupEditeAvatar.close();
     })
     .catch((err) => {
       console.log(`При обновлении аватара возникла ошибка, ${err}`)
     })
     .finally(() => {
-      popupEditeAvatar.returnSavingProcessText(); popupEditeAvatar.close()
+      popupEditeAvatar.returnSavingProcessText();
     })
 }
 });
 popupEditeAvatar.setEventListeners();
 
 // Объявление popup подтверждения удаления карточки
-const popupNoticeDelete = new popupNotice("#delete-card", {
+const popupNoticeDelete = new PopupNotice("#delete-card", {
 callbackNotice: (cardElement, cardId) => {
   apiConnect.deleteCard(cardId)
     .then(() => { popupNoticeDelete.close(); cardElement.remove(); })
@@ -146,7 +179,7 @@ popupEditOpen.addEventListener('click', function() {
   editProfileValidate.resetValidation();
   const currentUserInfo = userInfo.getUserInfo();
   profileNameInput.setAttribute('value', currentUserInfo.name);
-  profileJobInput.setAttribute('value', currentUserInfo.job);
+  profileJobInput.setAttribute('value', currentUserInfo.about);
 });
 
 // иконка изменения аватара

@@ -1,19 +1,19 @@
 class Section {
-  constructor({ renderer }, templateSelector) {
+  constructor({ renderer }, selector) {
     this._renderer = renderer;
-    this._templateContainer = document
-    .querySelector(templateSelector);
+    this._container = document
+    .querySelector(selector);
   }
 
-// метод отрисовки карточек
-  renderItems() {
-    res.forEach(this._renderer);
-    }
-
-// метод добавляет DOM-элемент в разметку
-addItem(cardElement) {
-  this._templateContainer.prepend(cardElement);
+  // метод добавляет DOM-элемент в разметку
+  addItem(cardElement) {
+  this._container.prepend(cardElement);
 }
+
+// метод отрисовки карточек
+  renderItems(cardObject) {
+    cardObject.forEach(this._renderer);
+    }
 }
 
 export { Section };

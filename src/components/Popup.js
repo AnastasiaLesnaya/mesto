@@ -1,7 +1,6 @@
 class Popup {
   constructor(popupSelector) {
     this._popupItem = document.querySelector(popupSelector);
-    this._sendButton = this._popupItem.querySelector('.popup__submit');
   }
 
   // метод открытия попапа
@@ -21,15 +20,6 @@ class Popup {
   if (evt.key === 'Escape') {
     this.close();
   }
-}
-
-// метод добавления кнопке текста
-putSavingProcessText() {
-  this._sendButton.textContent = 'Сохранение...'
-}
-// метод добавления стандартного текста кнопке
-returnSavingProcessText() {
-  this._sendButton.textContent = 'Создать'
 }
 
 // метод закрытия попапов по оверлэю

@@ -1,6 +1,6 @@
 import { Popup } from "./Popup.js";
 
-class popupNotice extends Popup {
+class PopupNotice extends Popup {
   constructor(popupSelector, { callbackNotice }) {
     super(popupSelector);
 
@@ -19,8 +19,8 @@ class popupNotice extends Popup {
   setEventListeners() {
     this._submitButton.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this._callbackNotice(this._cardObject, this._cardId); })
+      this._callbackNotice(this._cardObject, this._cardId)})
     super.setEventListeners();
   }
 }
-export { popupNotice };
+export { PopupNotice };

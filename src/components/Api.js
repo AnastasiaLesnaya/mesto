@@ -1,40 +1,48 @@
-class Api {
-  constructor({ link, headers }) {
-    this._link = link;
-    this._headers = headers;
+export class Api {
+  constructor(config) {
+    this._url = config.url;
+    this._headers = config.headers;
   }
-  // скрытый метод обработки ответа сервера
-  _processingServerResponse(res) {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Код ошибки: ${res.status}`);
+
+  getAllCards() {
+    return fetch(`${this._url}/cards`, {
+      method: "GET",
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+        return Promise.reject(`Код ошибки: ${res.status}`);
+      });
     }
-  }
-  // публичный метод загрузки карточек с сервера
-  getInitialCards() {
-    return fetch(`${this._link}cards`, {
-      headers: this._headers
-    })
-      .then(res => { return this._processingServerResponse(res); })
-  }
-  // публичный метод отправки новой карточки на сервер
-  addNewCard({ name, link }) {
-    return fetch(`${this._link}cards`, {
+    
+    // публичный метод отправки новой карточки на сервер
+  addNewCard(data) {
+    return fetch(`${this._url}/cards`, {
       headers: this._headers,
       method: 'POST',
-      body: JSON.stringify({ name, link })
-    })
-      .then(res => { return this._processingServerResponse(res); })
+      body: JSON.stringify(data)
+    }).then(res => { 
+      if (res.ok) {
+        return res.json();
+      }
+        return Promise.reject(`Код ошибки: ${res.status}`);
+      });
   }
+  
   // публичный метод удаления карточки с сервера
   deleteCard(cardId) {
-    return fetch(`${this._link}cards/${cardId}`, {
+    return fetch(`${this._url}cards/${cardId}`, {
       headers: this._headers,
       method: 'DELETE',
-    })
-      .then(res => { return this._processingServerResponse(res); })
+    }).then(res => { 
+      if (res.ok) {
+        return res.json();
+      }
+        return Promise.reject(`Код ошибки: ${res.status}`);
+      });
   }
+
   // публичный метод получения пользовательских данных с сервера
   getUserData() {
     return fetch(`${this._link}users/me`, {
@@ -47,7 +55,8 @@ class Api {
     return fetch(`${this._link}users/me`, {
       headers: this._headers,
       method: 'PATCH',
-      body: JSON.stringify({ name: profileData.name, about: profileData.job })
+      body: JSON.stringify({ name: profileData.name, about: profileData.about
+     })
     })
       .then(res => { return this._processingServerResponse(res); })
   }

@@ -1,8 +1,8 @@
 class UserInfo {
-  constructor({ usernameSelector, userJobSelector }) {
+  constructor({ usernameSelector, userJobSelector, userAvatarSelector }) {
     this._username = document.querySelector(usernameSelector);
-    this._userJob = document.querySelector(userJobSelector);
-    this._avatarLink = document.querySelector('.profile__avatar');
+    this._userAbout = document.querySelector(userJobSelector);
+    this._avatarLink = document.querySelector(userAvatarSelector);
   }
 
   // метод возвращения объекта с данными пользователя
@@ -11,19 +11,23 @@ class UserInfo {
   getUserInfo() {
     return {
       name: this._username.textContent,
-      job: this._userJob.textContent
+      about: this._userAbout.textContent
     };
+  }
+
+  getUserId() {
+    return this._userId;
   }
 
   // метод принимает новые данные пользователя 
   // и добавляет их на страницу
-  setUserInfo({ name, job }) {
-    this._username.textContent = name;
-    this._userJob.textContent = job;
+  setUserInfo(data) {
+    this._username.textContent = data.name ? data.name : "";
+    this._userAbout.textContent = data.about ? data.about : "";
   }
 // метод изменения аватара пользователя
-setUserAvatar(avatarLink) {
-  this._avatarLink.src = avatarLink;
+setUserAvatar(data) {
+  this._avatarLink.src = data.avatar ? data.avatar : "";
 }
 }
 

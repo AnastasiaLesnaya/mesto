@@ -1,12 +1,13 @@
 // создаём класс карточки (объект, шаблон)
 class Card {
 // объект карточки; шаблон; user Id; объект данных; handle
-constructor(cardObject, templateEl, userId, authorData, handleActions) {
+constructor(data, templateEl, userId, authorData, handleActions, api) {
   // данные с карточками и шаблон
-  this._card = cardObject;
-  this._cardName = this._card.name;
-  this._cardImage = this._card.link;
+  this._card = data;
+  this._cardName = this._data.name;
+  this._cardImage = this._data.link;
   this._cardTemplate = templateEl;
+  this._api = api;
   // данные пользователя
   this._userId = userId;
   this._cardId = authorData.cardId;
@@ -28,6 +29,7 @@ constructor(cardObject, templateEl, userId, authorData, handleActions) {
 // метод удаления карточки
 _deleteCard() {
   this._cardElement.remove();
+  this._cardElement = null;
 }
 
 // метод отображения кол-ва лайков
@@ -93,7 +95,7 @@ _addEventHandlers = () => {
   this._likeIcon.addEventListener('click', () => this._currentLike())
     this._elementImages.addEventListener('click', () => this._cardZoom(this._cardName, this._cardImage));
     if (this._userId === this._authorId) {
-      this._deleteIcon.addEventListener('click', () =>  this._cardDelete(this._cardElement, this._cardId, this._deleteCard));
+      this._deleteIcon.addEventListener('click', () => this._cardDelete(this, this._cardId));
     } else {
       this._deleteIcon.remove();
     }
