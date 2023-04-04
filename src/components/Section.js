@@ -1,19 +1,17 @@
-class Section {
+export class Section {
   constructor({ renderer }, selector) {
     this._renderer = renderer;
     this._container = document
     .querySelector(selector);
   }
 
-  // метод добавляет DOM-элемент в разметку
-  addItem(cardElement) {
-  this._container.prepend(cardElement);
-}
-
-// метод отрисовки карточек
-  renderItems(cardObject) {
-    cardObject.forEach(this._renderer);
+  // метод отрисовки карточек
+  renderItems(res) {
+    res.forEach(this._renderer);
     }
-}
 
-export { Section };
+  // метод добавляет DOM-элемент в разметку
+  addItem(res) {
+  this._container.prepend(res);
+}
+}

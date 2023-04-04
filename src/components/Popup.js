@@ -1,4 +1,4 @@
-class Popup {
+export class Popup {
   constructor(popupSelector) {
     this._popupItem = document.querySelector(popupSelector);
   }
@@ -10,7 +10,7 @@ class Popup {
   };
 
   // метод закрытия попапа
-  close () {
+  close() {
     this._popupItem.classList.remove('popup_opened');
     document.removeEventListener('keydown', this._handleEscClose);
   };
@@ -31,5 +31,3 @@ setEventListeners() {
   });
 }
 }
-
-export { Popup };

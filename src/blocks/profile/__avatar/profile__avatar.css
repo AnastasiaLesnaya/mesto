@@ -1,4 +1,4 @@
-.profile__image {
+.profile__avatar {
   margin: 0;
   padding: 0;
   width: 120px;
@@ -6,11 +6,12 @@
   justify-self: start;
   align-self: center;
   border-radius: 50%;
+  background-size: contain;
 }
 
 
 @media (max-width: 500px) {
-  .profile__image  {
+  .profile__avatar  {
     width: 100%;
     justify-self: center;
   }

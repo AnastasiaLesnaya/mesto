@@ -1,8 +1,8 @@
-class UserInfo {
+export class UserInfo {
   constructor({ usernameSelector, userJobSelector, userAvatarSelector }) {
     this._username = document.querySelector(usernameSelector);
     this._userAbout = document.querySelector(userJobSelector);
-    this._avatarLink = document.querySelector(userAvatarSelector);
+    this._avatar = document.querySelector(userAvatarSelector);
   }
 
   // метод возвращения объекта с данными пользователя
@@ -22,13 +22,9 @@ class UserInfo {
   // метод принимает новые данные пользователя 
   // и добавляет их на страницу
   setUserInfo(data) {
+    this._userId = data._id;
     this._username.textContent = data.name ? data.name : "";
     this._userAbout.textContent = data.about ? data.about : "";
+    this._avatar.src = data.avatar ? data.avatar : "";
   }
-// метод изменения аватара пользователя
-setUserAvatar(data) {
-  this._avatarLink.src = data.avatar ? data.avatar : "";
 }
-}
-
-export { UserInfo };

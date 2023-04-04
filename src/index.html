@@ -45,7 +45,7 @@
           <h2 class="cards__title"></h2>
           <div class="cards__like-area">
             <button type="button" class="cards__btn-like button" aria-label="like"></button>
-            <p class="cards__like-counter"></p>
+            <p class="cards__like-counter">0</p>
           </div>
         </div>>
       </li>
@@ -61,7 +61,7 @@
             <span class="username-input-error popup__input-error"></span>
           </label>
           <label for="job-input" class="popup__label">
-            <input id="job-input" type="text" name="job" class="popup__input popup__input_type_job" placeholder="О себе" minlength="2" maxlength="200" required>
+            <input id="job-input" type="text" name="about" class="popup__input popup__input_type_job" placeholder="О себе" minlength="2" maxlength="200" required>
             <span class="job-input-error popup__input-error"></span>
         </label>
           <button type="submit" class="button popup__submit">Сохранить</button>
@@ -75,11 +75,11 @@
         <h2 class="popup__title">Новое место</h2>
         <form name="newPlace" class="popup__form" novalidate>
           <label for="place-name-input" class="popup__label">
-            <input id="place-name-input" type="text" name="place" class="popup__input popup__input_type_place" placeholder="Название" minlength="2" maxlength="30" required>
+            <input id="place-name-input" type="text" name="name" class="popup__input popup__input_type_place" placeholder="Название" minlength="2" maxlength="30" required>
             <span class="place-name-input-error popup__input-error"></span>
           </label>
           <label for="place-picture-input" class="popup__label">
-            <input id="place-picture-input" type="url" name="picture" class="popup__input popup__input_type_picture" placeholder="Ссылка на картинку" required>
+            <input id="place-picture-input" type="url" name="link" class="popup__input popup__input_type_picture" placeholder="Ссылка на картинку" required>
             <span class="place-picture-input-error popup__input-error"></span>
           </label>
           <button type="submit" id="popup__submit-place" class="button popup__submit">Сохранить</button>
@@ -112,7 +112,7 @@
       <form class="popup__form" name="user-avatar" novalidate>
         <label for="avatar-input" class="popup__label">
           <input id="avatar-input" type="url" class="popup__input"
-                 name="avatar" required placeholder="Введите ссылку на аватар" minlength="2" maxlength="200">
+                 name="link" required placeholder="Введите ссылку на аватар" minlength="2" maxlength="200">
           <span class="avatar-input-error popup__input-error"></span>
         </label>
         <button type="submit" class="popup__submit" aria-label="Сохранить">Сохранить</button>
