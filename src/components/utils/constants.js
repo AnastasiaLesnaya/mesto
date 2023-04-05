@@ -22,9 +22,13 @@ const iconAvatarEdit = document.querySelector('.profile__avatar-edit');
 const newPlaceTitleInput = document.querySelector('.popup__input_type_place');
 const newPlaceLinkInput = document.querySelector('.popup__input_type_picture');
 
+// шаблон карточки
+const templateCard = document.querySelector("#cards__item_template").content;
+
 export {
   popupEditOpen, popupAddOpen, popupEdit, popupAdd,
   profileEditForm, profileNameInput, profileJobInput,
   newPlaceTitleInput, newPlaceLinkInput,
-  popupAvatarEditForm, iconAvatarEdit
+  popupAvatarEditForm, iconAvatarEdit,
+  templateCard
 };

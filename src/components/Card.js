@@ -1,12 +1,13 @@
 // создаём класс карточки (объект, шаблон)
 export class Card {
-constructor( data, templateEl, userId, handleCardClick, handleCardDelete, likeCardApi, dislikeCardApi ) {
+constructor( data, templateElem, userId, handleCardClick, handleCardDelete, likeCardApi, dislikeCardApi ) {
   // данные с карточками и шаблон
   this._data = data;
   this._cardName = this._data.name;
   this._cardImage = this._data.link;
-  this._templateElem = templateEl;
+  this._templateElem = templateElem;
   this._userId = userId;
+  this._cardEl = this._templateElem.querySelector('.cards__item');
   
   this._handleCardDelete = handleCardDelete;
   this._handleCardClick = handleCardClick;
@@ -15,23 +16,12 @@ constructor( data, templateEl, userId, handleCardClick, handleCardDelete, likeCa
   this._isLiked = data.likes.length !== 0 ? data.likes.find((item) => item._id === this._userId()) : false;
 }
 
-_generateCard() {
-  return document.querySelector(this._templateElem).content.querySelector('.cards__item').cloneNode(true);
-}
-
-// метод удаления карточки
-deleteCard() {
-  this._cardElement.remove();
-  this._cardElement = null;
-}
-
 // метод создания карточки
 createCard() {
-  this._cardElement = this._generateCard();
+  this._cardElement = this._cardEl.cloneNode(true);
 
-  this._currentLike = this._cardElement
+  this._likeSelector = this._cardElement
   .querySelector('.cards__like-counter');
-
   this.renderCardLike(this._data);
 
   this._elementImages = this._cardElement
@@ -45,10 +35,6 @@ createCard() {
 
   this._deleteIcon = this._cardElement
   .querySelector('.cards__btn-delete');
-
-  this.likeSelector = this._cardElement
-  .querySelector('.cards__like-counter');
-  this.renderCardLike(this._data);
 
   // передаём данные в карточку
   this._elementImages.src = this._cardImage;
@@ -67,15 +53,15 @@ return this._cardElement;
 _isThisUser(data) {
   if (data.owner._id !== this._userId()) {
     this._deleteIcon.remove();
-  } else {
-    this._deleteIcon.addEventListener('click', () => {
-      this._handleCardDelete(this._data, this._deleteCard);
-    });
   }
 }
 
 // обработчики для элемента
 _addEventHandlers() {
+  this._deleteIcon.addEventListener("click", () => {
+    this._handleCardDelete(this._data, this._deleteCard.bind(this));
+  });
+
   this._likeIcon.addEventListener('click', () =>
     this._currentLikeApi()
   );
@@ -86,7 +72,7 @@ _addEventHandlers() {
 }
 
 renderCardLike(data) {
-  this._likeSelector = data.likes.length;
+  this._likeSelector.textContent = data.likes.length;
 }
 
 currentLike(data) {
@@ -100,6 +86,13 @@ currentLike(data) {
   }
 }
 
+// метод удаления карточки
+_deleteCard() {
+  this._cardEl.remove();
+  this._cardElement.remove();
+  this._cardEl = null;
+}
+
 _dislikeCard() {
   this._likeIcon.classList.remove("cards__btn-like_active")
 }
@@ -108,10 +101,10 @@ _likeCard() {
 }
 
 _currentLikeApi() {
-  if (this._likeIcon.classlist.contains("cards__btn-like_active")) {
-    this._dislikeCardApi(data._id);
+  if (this._likeIcon.classList.contains("cards__btn-like_active")) {
+    this._dislikeCardApi(this._data._id);
   } else {
-    this._likeCardApi(data._id);
+    this._likeCardApi(this._data._id);
   }
 }
 

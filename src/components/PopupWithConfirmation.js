@@ -15,11 +15,13 @@ setData(data, deleteCard) {
   this._deleteCard = deleteCard;
 }
 
-getData(data, deleteCard) {
-  this._data = data;
-  this.deleteCard = deleteCard;
-  super.open();
+getData() {
+  return {
+    data: this._data,
+    deleteCard: this._deleteCard,
+  }
 }
+
 // вешаем обработчики на кнопку сохранения
 setEventListeners() {
   super.setEventListeners();

@@ -12,7 +12,8 @@ import { Api } from '../components/Api.js';
 import {
   popupEditOpen, popupAddOpen, popupAdd,
   profileEditForm, profileNameInput, profileJobInput,
-  popupAvatarEditForm, iconAvatarEdit
+  popupAvatarEditForm, iconAvatarEdit,
+  templateCard
 } from '../components/utils/constants.js';
 
 // для валидации
@@ -40,13 +41,6 @@ const userInfo = new UserInfo({
   userJobSelector: '.profile__job',
   userAvatarSelector: '.profile__avatar'
 });
-
-function userId() {
-  return userInfo.getUserId();
-}
-
-// шаблон
-//const templateCard = document.querySelector("#cards__item_template");
 
 // отрисовка начальных карточек с помощью API
 const section = new Section({ renderer: renderCard }, ".cards");
@@ -116,7 +110,7 @@ const popupNoticeDelete = new PopupWithConfirmation("#delete-card", () => {
 
 // функция создания новой карточки
 function createNewCard(data) {
-  const card = new Card(data, '#cards__item_template', userId, handleCardClick, handleCardDelete,
+  const card = new Card(data, templateCard, userId, handleCardClick, handleCardDelete,
     (id) => {
       api.likeCard(id)
       .then((res) => {
@@ -141,6 +135,10 @@ function createNewCard(data) {
   return card.createCard();
 }
 
+function userId() {
+  return userInfo.getUserId();
+}
+
 // Объявление popup редактирования аватара
 const popupEditeAvatar = new PopupWithForm('#avatar-popup', (data) => {
   popupEditeAvatar.showLoading(true);
@@ -163,7 +161,7 @@ function handleCardClick(name, link) {
 }
 
 function handleCardDelete(data, deleteCard) {
-  popupNoticeDelete.getData();
+  popupNoticeDelete.open();
   popupNoticeDelete.setData(data, deleteCard);
 }
 
