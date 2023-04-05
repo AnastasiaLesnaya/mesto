@@ -1,10 +1,6 @@
 .cards__item {
   max-width: 100%;
   color: black;
-  display: grid;
-  grid-template-columns: 1fr 79px;
-  align-items: center;
-  justify-items: start;
   background-color: white;
   border-radius: 10px;
   overflow: hidden;

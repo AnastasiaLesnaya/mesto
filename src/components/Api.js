@@ -63,8 +63,8 @@ addNewCard(data) {
     method: 'POST',
     headers: this._headers,
     body: JSON.stringify({
+      link: data.link,
       name: data.name,
-      link: data.link,      
     }),
   });
 }
@@ -72,8 +72,8 @@ addNewCard(data) {
 // удаление карточки с сервера
 deleteCard(id) {
   return this._request(`${this._url}/cards/${id}`, {
-    headers: this._headers,
     method: 'DELETE',
+    headers: this._headers,
   });
 }
 

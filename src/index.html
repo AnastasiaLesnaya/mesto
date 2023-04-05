@@ -37,8 +37,8 @@
         <p class="footer__copyright">&copy;&nbsp;2023 Mesto Russia</p>
       </footer>
 <!-- Темплэйт карточки места -->
-    <template id="cards__item_template">
-      <li class="cards__item">
+    <template id="cards__item_template" class="cards__item_template">
+      <div class="cards__item">
         <button class="button cards__btn-delete" type="button" aria-label="delete"></button>
         <img src="#" class="cards__image button cards__btn-zoom" alt="">
         <div class="cards__info">
@@ -47,8 +47,8 @@
             <button type="button" class="cards__btn-like button" aria-label="like"></button>
             <p class="cards__like-counter">0</p>
           </div>
-        </div>>
-      </li>
+        </div>
+      </div>
     </template>
 <!-- Попап, редактирование профиля -->
     <div class="popup popup_edit">
@@ -97,10 +97,10 @@
   <!--Попап, удаление карточки-->
   <div id="delete-card" class="popup">
     <div class="popup__container">
-      <button type="button" class="popup__close" aria-label="Закрыть форму"></button>
+      <button type="button" class="popup__close" aria-label="Закрыть"></button>
       <h2 class="popup__title">Вы уверены?</h2>
       <form class="popup__form" name="delete-card" novalidate>
-        <button type="submit" class="popup__submit" aria-label="Сохранить">Да</button>
+        <button type="submit" class="popup__submit" aria-label="Подтвердить удаление">Да</button>
       </form>
     </div>
   </div>

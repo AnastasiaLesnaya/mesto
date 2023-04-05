@@ -1,6 +1,5 @@
 .cards__title {
   box-sizing: border-box;
-  grid-column: 1/2;
   width: 100%;
   margin: 0 auto;
   padding: 25px 0 25px 21px;

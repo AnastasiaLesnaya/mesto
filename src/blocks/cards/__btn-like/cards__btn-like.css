@@ -5,8 +5,8 @@
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  min-width: 22px;
-  min-height: 19px;
+  width: 22px;
+  height: 19px;
   border: none;
   background-color: transparent;
   transition: all .5s ease-in-out;

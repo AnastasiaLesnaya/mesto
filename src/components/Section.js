@@ -5,13 +5,15 @@ export class Section {
     .querySelector(selector);
   }
 
-  // метод отрисовки карточек
-  renderItems(res) {
-    res.forEach(this._renderer);
-    }
 
-  // метод добавляет DOM-элемент в разметку
   addItem(res) {
-  this._container.prepend(res);
-}
+    this._container.prepend(res);
+  }
+
+  // метод отрисовки карточек
+  renderItems(data) {
+    data.forEach((res) => {
+      this._renderer(res);
+    });
+ }
 }
